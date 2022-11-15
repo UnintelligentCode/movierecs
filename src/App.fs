@@ -23,6 +23,7 @@ mainDiv.style.setProperty("grid-template-areas", "\"h1 h1 h1 h1\" \"mc mc mc mc\
 let mainIMG = document.createElement "img" :?> HTMLImageElement
 mainIMG.setAttribute("id", "mainIMG")
 mainIMG.src <- "twk.jpg"
+mainIMG.alt <- "The Woman King"
 mainIMG.style.setProperty("grid-area", "mc")
 mainIMG.style.setProperty("width", "256px")
 
@@ -44,7 +45,8 @@ badBtn.style.width <- "128px"
 let mainHeader = document.createElement "p"
 //setting attributes & props for styles
 mainHeader.setAttribute("id", "mainHeader")
-mainHeader.textContent <- "TEST"
+mainHeader.textContent <- mainIMG.alt
+mainHeader.style.backgroundColor <- ""
 mainHeader.style.color <- "red"
 mainHeader.style.setProperty("grid-area", "h1")
 mainHeader.style.width <- "256px"
@@ -56,3 +58,11 @@ mainDiv.appendChild mainHeader |> ignore
 mainDiv.appendChild mainIMG |> ignore
 mainDiv.appendChild badBtn |> ignore
 mainDiv.appendChild goodBtn |> ignore
+
+let disableBtns(go:bool) =
+  if go then
+    badBtn.disabled <- true
+    goodBtn.disabled <- true
+
+badBtn.addEventListener("click", fun e -> disableBtns true)
+goodBtn.addEventListener("click", fun e -> disableBtns true)
