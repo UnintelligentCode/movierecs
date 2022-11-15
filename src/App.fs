@@ -14,10 +14,8 @@ mainDiv.setAttribute("id", "movieCard")
 mainDiv.style.setProperty("display", "grid")
 mainDiv.style.setProperty("height", "256px")
 mainDiv.style.setProperty("width", "256px")
-//mainDiv.style.setProperty("grid-template-columns", "repeat(4, 128px")
+mainDiv.style.setProperty("grid-template-columns", "auto")
 mainDiv.style.setProperty("grid-template-rows", "auto")
-console.log bodySize
-
 mainDiv.style.setProperty("grid-template-areas", "\"h1 h1 h1 h1\" \"mc mc mc mc\" \"mc mc mc mc\" \"mc mc mc mc\" \"b1 b1 b2 b2\"")
 
 let mainIMG = document.createElement "img" :?> HTMLImageElement
@@ -59,10 +57,9 @@ mainDiv.appendChild mainIMG |> ignore
 mainDiv.appendChild badBtn |> ignore
 mainDiv.appendChild goodBtn |> ignore
 
-let disableBtns(go:bool) =
-  if go then
-    badBtn.disabled <- true
-    goodBtn.disabled <- true
+let disableBtns() =
+  badBtn.disabled <- true
+  goodBtn.disabled <- true
 
-badBtn.addEventListener("click", fun e -> disableBtns true)
-goodBtn.addEventListener("click", fun e -> disableBtns true)
+badBtn.addEventListener("click", fun e -> disableBtns())
+goodBtn.addEventListener("click", fun e -> disableBtns())
